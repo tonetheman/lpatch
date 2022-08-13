@@ -51,17 +51,23 @@ static int l_writefile(lua_State* L) {
 
 int main(int argc, char** argv) {
     char * input_filename = 0;
+    char * patch_filename = 0;
 
     for(int i=0;i<argc;i++) {
         if ((strcmp(argv[i],"--input")==0) || strcmp(argv[i],"-i")==0) {
             input_filename = argv[i+1];
         }
+        if ((strcmp(argv[i],"--patch")==0) || (strcmp(argv[i],"-p")==0)) {
+            patch_filename = argv[i+1];
+        }
     }
 
-    if (input_filename==0) {
-        printf("--input <filename>\n");
-        printf("binary will read the input file into memory in a buffer\n");
-        printf("binary will read patcher.lua to do its work\n");
+    if ((input_filename==0) || (patch_filename==0)) {
+        printf("--input <filename> --patch <filename>\n");
+        printf("-i <filename> -p <filename>\n");
+        printf("descrption\n");
+        printf("lpatch will read the input file into memory in a buffer\n");
+        printf("lpatch will read the patch file given on the cmd line\n");
         printf("lua5.4 is used with the following extra functions\n");
         printf("patch_getbyte(n) - will return the byte at this position\n");
         printf("patch_getfilesize() - return the filesize we read\n");

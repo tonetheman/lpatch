@@ -35,5 +35,5 @@ patch_setbyte(0,2)
 -- patch_writefile will write the file back to disk, the original input file is
 -- left untouched
 patch_writefile("testing")
-dbg("patcher.lua")
+dbg("patcher.lua finished")
 
